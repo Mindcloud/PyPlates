@@ -1,2 +1,10 @@
-Adding a line
+This project relies on the following additional libraries
+
+django
+django-tastypie
+python-rest-client
+
+to install, use pip
+
+sudo pip install <library>
 

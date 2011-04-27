@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
+from tastypie.validation import Validation
 from tastypie import fields
 from tastypie.cache import SimpleCache
 from tastypie.resources import ModelResource
@@ -19,5 +20,6 @@ class SnippetResource(ModelResource):
 	
     class Meta:
         queryset = Snippet.objects.all()
-        allowed_methods = ['get']
+        list_allowed_methods = ['get', 'post']
+        detail_allowed_methods = ['get', 'post', 'put']
 
