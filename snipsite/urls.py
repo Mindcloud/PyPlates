@@ -5,10 +5,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 from tastypie.api import Api
-from mysite.api.resources import SnippetResource
+from mysite.api.resources import *
 
 v1_api = Api(api_name='v1')
 v1_api.register(SnippetResource())
+v1_api.register(UserResource())
 
 urlpatterns = patterns('',
     # Examples:

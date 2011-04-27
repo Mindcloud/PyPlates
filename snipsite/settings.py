@@ -2,6 +2,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+TASTYPIE_FULL_DEBUG = True
 
 ADMINS = (
     ('Jeff', 'jeff@mindcloud.com'),
@@ -143,3 +144,4 @@ LOGGING = {
         },
     }
 }
+
