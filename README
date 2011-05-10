@@ -4,6 +4,8 @@ django
 django-tastypie
 pygments
 markdown
+django-haystack
+django-taggit
 
 to install, use pip
 
