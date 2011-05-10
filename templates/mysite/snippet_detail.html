@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load cache %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content_header %}{{ object.title }}{% endblock %}
+
+{% block content %}
+  {{ object.highlighted_code|safe }}
+{% endblock %}
+
+{% block sidebar %}
+  {{ object.description_html|safe }}
+
+  <dl>
+    <dt>Author:</dt>
+    <dd><a href="/users/{{ object.author.username }}/">{{ object.author.username }}</a></dd>
+    <dt>Posted:</dt>
+    <dd>{{ object.pub_date|date:"F j, Y" }}</dd>
+    <dt>Language:</dt>
+    <dd><a href="{{ object.language.get_absolute_url }}">{{ object.language.name }}</a></dd>
+    <dt>Python Version:</dt>
+    <dd>{{ object.get_version }}</dd>
+  </dl>
+
+{% endblock %}

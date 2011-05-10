@@ -7,6 +7,8 @@ from markdown import markdown
 from django import forms
 from django.forms import ModelForm, Textarea
 
+from taggit.managers import TaggableManager
+
 PYTHON_VERSIONS = (
     (3.0, '3.0'),
     (2.7, '2.7'),
@@ -64,22 +66,30 @@ class Snippet(models.Model):
     def __unicode__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        self.description_html = markdown(self.description, safe_mode="escape")
+        self.highlighted_code = self.highlight()
+        super(Snippet, self).save(*args, **kwargs)
+
     def entered_today(self):
         return self.pub_date.date() == datetime.date.today()
 
     def highlight(self): #highlight the code for the right syntax
         return highlight(self.code, self.language.get_lexer(), 
                          formatters.HtmlFormatter(linenos=True))
-
     def get_version(self):
         return dict(PYTHON_VERSIONS)[self.python_version]
 
-class SnippetForm(ModelForm):
-    class Meta:
-        model = Snippet
-        fields = ('title', 'category', 'description', 'code', 'python_version')
-        widgets = {
-            'description': Textarea(attrs={'cols': 80, 'rows': 20}),
-            'code': Textarea(attrs={'cols': 80, 'rows': 20}),
-        }
+    @permalink
+    def get_absolute_url(self):
+        return ('snippet_detail', (), {'snippet_id': self.id})
+
+#class SnippetForm(forms.ModelForm):
+#    class Meta:
+#        model = Snippet
+#        fields = ('title', 'category', 'description', 'code', 'python_version')
+##        widgets = {
+#            'description': Textarea(attrs={'cols': 80, 'rows': 20}),
+#            'code': Textarea(attrs={'cols': 80, 'rows': 20}),
+#        }
 

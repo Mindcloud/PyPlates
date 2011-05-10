@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Mindcloud snippets: {% block title %}Home{% endblock %}</title>
+  </head>
+<body class="{% block bodyclass %}snippets{% endblock %}">
+  <div id="header">
+    <h1><a href="/">Mindcloud snippets</a></h1>
+    <div id="nav-main">
+      <span>
+        {% if user.is_authenticated %}
+          Logged in as <a href="/users/{{ user.username }}/">{{ user.username }}</a> (<a href="/add/">Add a snippet</a>) (<a href="/accounts/logout/">Log out</a>)
+        {% else %}
+          <a href="/accounts/login/?next={% ifequal request.path "/accounts/logout/" %}/{% else %}{{ request.path }}{% endifequal %}">Log in</a> or <a href="/accounts/register/">register</a>
+        {% endif %}
+      </span>
+      <ul>
+        <li id="nav-snippets"><a href="/snippets/">Snippets</a></li>
+        {% if user.is_authenticated %}
+          <li id="nav-account"><a href="/users/{{ user.username }}/">You</a></li>
+        {% endif %}
+        <li id="nav-about"><a href="/about/">About</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <ul id="nav-secondary">
+  {% block secondary_nav %}
+    <li><a href="/users/">By author</a></li>
+    <li><a href="/languages/">By language</a></li>
+    <li><a href="/tags/">By tag</a></li>
+    <li><a href="/popular/rated/">Highest-rated</a></li>
+  {% endblock %}
+  </ul>
+
+
+  <h2>{% block content_header %}{% endblock %}</h2>
+  <div id="content">
+    <div id="main">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div id="sidebar">
+      <div style="padding: 15px;">
+        <form method="get" action="/search/">
+          <table>
+            <tr>
+              <td><label for="id_q">Search:</label></td>
+              <td><input type="text" name="q" id="id_q" style="width: 110px;" value="{{ request.GET.q }}" /></td>
+              <td><input type="submit" value="Go" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><a href="/search/advanced/">Advanced Search</a></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% block extra_content %}
+  {% endblock %}
+
+  <div id="footer">
+    <div class="chunk">
+      <h3>Snippets</h3>
+      <ul>
+        <li><a href="/users/">By author</a></li>
+        <li><a href="/languages/">By language</a></li>
+        <li><a href="/tags/">By tag</a></li>
+        <li><a href="/popular/rated/">Highest-rated</a></li>
+      </ul>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="chunk">
+      <h3>Your account</h3>
+      <ul>
+        <li><a href="/users/{{ user.username }}/">Your snippets</a></li>
+        <li><a href="/snippets/add/">Add a snippet</a></li>
+        <li><a href="/accounts/logout/">Log out</a></li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
