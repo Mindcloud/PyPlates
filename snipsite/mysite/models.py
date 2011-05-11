@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import permalink
+from django.db.models import Count, Sum, permalink
 import datetime
 from pygments import formatters, highlight, lexers
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
 from markdown import markdown
 from django import forms
 from django.forms import ModelForm, Textarea
@@ -38,7 +40,7 @@ class Language(models.Model):
         return ('language_detail', (), {'slug': self.slug})
 
     def get_lexer(self):
-        return lexers.get_lexer_by_name(self.language_code)
+        return lexers.get_lexer_by_name("python")
 
 class SnippetManager(models.Manager):
     def top_rated(self):
@@ -58,7 +60,7 @@ class Snippet(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     rating_score = models.IntegerField(default=0)
     
-    #objects = SnippetManager()
+    objects = SnippetManager()
 
     class Meta:
         ordering = ('-pub_date',)
@@ -75,8 +77,12 @@ class Snippet(models.Model):
         return self.pub_date.date() == datetime.date.today()
 
     def highlight(self): #highlight the code for the right syntax
-        return highlight(self.code, self.language.get_lexer(), 
-                         formatters.HtmlFormatter(linenos=True))
+        return highlight(self.code, PythonLexer(),HtmlFormatter())
+
+    #def highlight(self): #highlight the code for the right syntax
+    #    return highlight(self.code, self.language.get_lexer(),
+    #                     formatters.HtmlFormatter(linenos=True))
+
     def get_version(self):
         return dict(PYTHON_VERSIONS)[self.python_version]
 
