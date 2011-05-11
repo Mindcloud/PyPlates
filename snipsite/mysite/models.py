@@ -77,7 +77,7 @@ class Snippet(models.Model):
         return self.pub_date.date() == datetime.date.today()
 
     def highlight(self): #highlight the code for the right syntax
-        return highlight(self.code, PythonLexer(),HtmlFormatter())
+        return highlight(self.code, PythonLexer(),HtmlFormatter(style='colorful').style)
 
     #def highlight(self): #highlight the code for the right syntax
     #    return highlight(self.code, self.language.get_lexer(),

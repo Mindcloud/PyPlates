@@ -46,12 +46,12 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/home/jeff/Dev/PyPlates/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -103,12 +103,22 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'snipsite.urls'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.media',
+)
+
 TEMPLATE_DIRS = (
     "/home/jeff/Dev/PyPlates/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+HAYSTACK_SITECONF = 'mysite.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = '/home/jeff/Dev/PyPlates/whoosh/mysite_index'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -121,6 +131,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'tastypie',
     'mysite',
+    'whoosh',
+    'haystack',
 )
 
 # A sample logging configuration. The only tangible logging

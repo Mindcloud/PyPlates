@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>Mindcloud snippets: {% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" href="/media/css/style.css" type="text/css" />
   </head>
 <body class="{% block bodyclass %}snippets{% endblock %}">
   <div id="header">
@@ -42,10 +43,6 @@
               <td><label for="id_q">Search:</label></td>
               <td><input type="text" name="q" id="id_q" style="width: 110px;" value="{{ request.GET.q }}" /></td>
               <td><input type="submit" value="Go" /></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><a href="/search/advanced/">Advanced Search</a></td>
             </tr>
           </table>
         </form>
