@@ -8,7 +8,6 @@ from pygments.formatters import HtmlFormatter
 from markdown import markdown
 from django import forms
 from django.forms import ModelForm, Textarea
-
 from taggit.managers import TaggableManager
 
 PYTHON_VERSIONS = (
@@ -18,12 +17,6 @@ PYTHON_VERSIONS = (
     (2.5, '2.5'),
     (0,  'Other'),
 )
-
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return self.name
 
 class Language(models.Model):
     name = models.CharField(max_length=100)
@@ -46,10 +39,15 @@ class SnippetManager(models.Manager):
     def top_rated(self):
         return self.all().order_by('-rating_score')
 
+    def top_tags(self):
+        return self.model.tags.most_common().order_by('-num_times', 'name')
+
+    def tag_match(self, tag):
+        return self.filter(tags__in=[tag])
+
 class Snippet(models.Model):
     title = models.CharField(max_length=255)
     language = models.ForeignKey(Language)
-    category = models.ForeignKey(Category)
     user = models.ForeignKey(User)
     description = models.TextField()
     description_html = models.TextField(editable=False)
@@ -60,6 +58,7 @@ class Snippet(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     rating_score = models.IntegerField(default=0)
     
+    tags = TaggableManager()
     objects = SnippetManager()
 
     class Meta:
@@ -77,11 +76,7 @@ class Snippet(models.Model):
         return self.pub_date.date() == datetime.date.today()
 
     def highlight(self): #highlight the code for the right syntax
-        return highlight(self.code, PythonLexer(),HtmlFormatter(style='colorful').style)
-
-    #def highlight(self): #highlight the code for the right syntax
-    #    return highlight(self.code, self.language.get_lexer(),
-    #                     formatters.HtmlFormatter(linenos=True))
+        return highlight(self.code, PythonLexer(),HtmlFormatter())
 
     def get_version(self):
         return dict(PYTHON_VERSIONS)[self.python_version]
@@ -90,12 +85,5 @@ class Snippet(models.Model):
     def get_absolute_url(self):
         return ('snippet_detail', (), {'snippet_id': self.id})
 
-#class SnippetForm(forms.ModelForm):
-#    class Meta:
-#        model = Snippet
-#        fields = ('title', 'category', 'description', 'code', 'python_version')
-##        widgets = {
-#            'description': Textarea(attrs={'cols': 80, 'rows': 20}),
-#            'code': Textarea(attrs={'cols': 80, 'rows': 20}),
-#        }
-
+    def get_tags(self):
+        return ", ".join([tag.name for tag in self.tags.all()])

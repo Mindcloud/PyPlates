@@ -3,12 +3,13 @@ from django.template.context import RequestContext
 from django.template.defaultfilters import slugify
 from django.utils import simplejson as json
 from django.views.generic.list_detail import object_list, object_detail
-from mysite.models import Snippet, Language, Category
+from mysite.models import Snippet, Language
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404, HttpResponse
 from mysite.forms import SnippetForm
+from taggit.models import Tag
 
 def snippet_list(request, queryset=None, **kwargs):
     if queryset is None:
@@ -33,7 +34,7 @@ def edit_snippet(request, snippet_id=None, template_name='mysite/edit_snippet.ht
             return HttpResponseForbidden()
     else:
         template_name = 'mysite/add_snippet.html'
-        snippet = Snippet(user=request.user, language=Language.objects.get(name='Python'), category=Category.objects.get(name='General'))
+        snippet = Snippet(user=request.user, language=Language.objects.get(name='Python'))
     if request.method == 'POST':
         form = SnippetForm(instance=snippet, data=request.POST)
         if form.is_valid():

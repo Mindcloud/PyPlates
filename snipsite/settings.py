@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'mysite',
     'whoosh',
     'haystack',
+    'taggit',
 )
 
 # A sample logging configuration. The only tangible logging

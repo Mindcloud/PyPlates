@@ -5,7 +5,7 @@ admin.autodiscover()
 import settings
 from tastypie.api import Api
 from mysite.api.resources import *
-from mysite.views import snippets, user
+from mysite.views import snippets, user, taglist
 
 v1_api = Api(api_name='v1')
 v1_api.register(SnippetResource())
@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     (r'^api/', include(v1_api.urls)),
+    url(r'^tags/', taglist.top_tags, name='top_tags'),
 )
 
 if settings.DEBUG:

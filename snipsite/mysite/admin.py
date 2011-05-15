@@ -1,7 +1,5 @@
-from mysite.models import Snippet, Category, Language
+from mysite.models import Snippet, Language
 from django.contrib import admin
-
-admin.site.register(Category)
 
 class LanguageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
