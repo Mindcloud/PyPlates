@@ -15,10 +15,10 @@
       <dd>{{ form.title }}</dd>
       <dt><label for="id_language">Language:</label></dt>
       <dd>{{ form.language }}{% if form.language.errors %}<span class="error">&nbsp;&nbsp;{{ form.language.errors|join:", " }}</span>{% endif %}</dd>
-      <dt><label for="id_category">Category:</label></dt>
-      <dd>{{ form.category }}{% if form.category.errors %}<span class="error">&nbsp;&nbsp;{{ form.category.errors|join:", " }}</span>{% endif %}</dd>
       <dt><label for="id_django_version">Python version:</label></dt>
       <dd>{{ form.python_version }}{% if form.python_version.errors %}<span class="error">&nbsp;&nbsp;{{ form.python_version.errors|join:", " }}</span>{% endif %}</dd>
+      <dt><label for="id_tag_list">Tags: {% if form.tag_list.errors %}<span class="error">{{ form.tag_list.errors|join:", " }}</span>{% endif %} </label></dt>
+      <dd>{{ form.tags }} <br />Use commas between tags.</dd>
       <dt><label for="id_code">Code: {% if form.code.errors %}<span class="error">{{ form.code.errors|join:", " }}</span>{% endif %}</label></dt>
       <dd>{{ form.code }}</dd>
       <dt><label for="id_description">Description: {% if form.description.errors %}<span class="error">{{ form.description.errors|join:", " }}</span>{% endif %}</label></dt>

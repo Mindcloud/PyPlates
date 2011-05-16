@@ -59,3 +59,200 @@
 .vg { color: #19177C } /* Name.Variable.Global */
 .vi { color: #19177C } /* Name.Variable.Instance */
 .il { color: #666666 } /* Literal.Number.Integer.Long */
+body {
+    color: #666;
+    background: #fff;
+    font: 90%/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a:link, a:visited, a:hover {
+    color: #316241;
+}
+
+a:active {
+    color: #92cc47;
+}
+
+textarea { border: 1px solid #ccc; padding: 3px; width: 500px; font-family: "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", monospace; font-size: 11px;}
+input[type='text'], input[type='password'], select { 
+    border: 1px solid #ccc; padding: 3px; font-family: Helvetica, Verdana, Arial, sans; width: 350px; }
+input[type='text'].small { width: 120px; }
+
+#header #nav-main ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 115%;
+}
+
+h2 {
+    font-size: 1.7em;
+    color: #000;
+    margin: 40px 10px 0 20px;
+}
+
+#content {
+    border-top: 1px solid #ccc;
+    margin: 0 20px 2em 20px;
+}
+
+#content #main {
+    width: 65%;
+    float: left;
+    border-right: 1px solid #ccc;
+    padding-bottom: 4em;
+}
+
+#content #main table.highlighttable {
+    width: 90%;
+    overflow: auto;
+    padding: 0.5em;
+    font-family: "Andale Mono";
+}
+
+#content #main table.highlighttable pre {
+    font-family: "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", monospace;
+}
+
+#content #main table.highlighttable div.highlight {
+    overflow: auto;
+}
+
+#content #main table.highlighttable div.highlight pre {
+    width: 540px;
+}
+
+#content #main table.highlighttable td.code {
+    vertical-align: top;
+    width: 100%;
+}
+
+#content #main table.highlighttable td.linenos {
+    vertical-align: top;
+    padding-right: 1em;
+}
+
+#content #main ul, #content #main ol {
+    margin: 1em 0 1em 20px;
+}
+
+#content #main ul {
+    list-style-type: square;
+}
+
+#content #main li {
+    margin: 0.5em 1em 0.5em 0;
+}
+
+#content #main dl {
+    margin-top: 1em;
+}
+
+#content #main dt {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+#content #main dt label {
+    font-weight: bold;
+}
+
+#content #main dd {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+#content #main dd textarea {
+    width: 80%;
+    height: 200px;
+}
+
+#content #main h3 {
+    margin: 1em 0;
+}
+
+#content #main p {
+    margin: 1em 1em 1em 0;
+}
+
+#content #main .error {
+    color: red;
+}
+
+#content #sidebar {
+    width: 32%;
+    float: left;
+}
+
+#content #sidebar p {
+    margin: 0.5em 1em;
+}
+
+#content #sidebar dl {
+    margin: 0.5em 1em;
+}
+
+#content #sidebar h1, #content #sidebar h2 {
+    font-size: 100%;
+    margin: 0.5em 1em;
+}
+
+#content #sidebar pre, #content #sidebar blockquote {
+    margin: 1em 0 1em 40px;
+}
+
+#content #sidebar dl dt, #content #sidebar dl dd {
+    float: left;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#content #sidebar dl dt {
+    clear: left;
+    font-weight: bold;
+}
+
+#content #sidebar h3 {
+    clear: left;
+    font-size: 110%;
+    margin: 0.5em 1em;
+    padding-top: 1em;
+}
+
+#content #sidebar ul {
+    clear: left;
+    margin: 0.5em 1em;
+    list-style-type: none;
+}
+
+#content #sidebar ol {
+    clear: left;
+    margin-left: 4em;
+}
+
+#content #sidebar li {
+    margin-bottom: 0.5em;
+}
+
+#footer {
+    clear: left;
+    color: #fff;
+    margin-top: 2em;
+    width: 100%;
+    overflow: auto;
+}
+
+#footer div.chunk {
+    margin-top: 1em;
+    margin-left: 20px;
+    width: 15%;
+    float: left;
+    margin-bottom: 2em;
+}
+
+#footer div.chunk h3 {
+    font-size: 110%;
+}
+
+#footer div.chunk ul {
+    list-style-type: none;
+}

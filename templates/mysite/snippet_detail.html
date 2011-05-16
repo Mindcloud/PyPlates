@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load cache %}
+{% load safe_markup %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
@@ -21,6 +22,19 @@
     <dd><a href="{{ object.language.get_absolute_url }}">{{ object.language.name }}</a></dd>
     <dt>Python Version:</dt>
     <dd>{{ object.get_version }}</dd>
+    <dt>Tags:</dt>
+    <dd>{% for tag in object.tags.all %}<a href="{% url snippet_matches_tag tag.slug %}">{{ tag.name }}</a> {% endfor %}</dd>
   </dl>
+  
+  <h3>Other Options</h3>
+  <ul>
+    {% if user.is_authenticated %}
+      {% ifequal user.id object.user.id %}
+        <li><a href="{{ object.id }}/edit/">Edit this snippet</a></li>
+      {% endifequal %}
+    {% endif %}
+  </ul>
 
 {% endblock %}
+
+
