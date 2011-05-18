@@ -10,6 +10,7 @@ from mysite.views import snippets, user, taglist
 v1_api = Api(api_name='v1')
 v1_api.register(SnippetResource())
 v1_api.register(UserResource())
+v1_api.register(LanguageResource())
 
 urlpatterns = patterns('',
     url(r'^$', snippets.snippet_list, name='snippet_list'),

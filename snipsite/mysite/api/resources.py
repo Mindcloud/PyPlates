@@ -5,7 +5,7 @@ from tastypie.validation import Validation
 from tastypie import fields
 from tastypie.cache import SimpleCache
 from tastypie.resources import ModelResource
-from mysite.models import Snippet
+from mysite.models import Snippet, Language
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.authorization import Authorization
 
@@ -17,8 +17,14 @@ class UserResource(ModelResource):
         #authentication = BasicAuthentication()
         authorization = Authorization()
 
+class LanguageResource(ModelResource):
+    class Meta:
+        queryset = Language.objects.all()
+        resource_name = 'language'
+
 class SnippetResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
+    language = fields.ForeignKey(LanguageResource, 'language')
 	
     class Meta:
         queryset = Snippet.objects.all()

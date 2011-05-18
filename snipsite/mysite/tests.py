@@ -1,8 +1,5 @@
 """
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
+This runs through API tests
 """
 
 from django.http import HttpRequest
@@ -28,8 +25,7 @@ class APITestCases(TestCase):
     def test_post(self):
         print "Running post test"
         request = HttpRequest()
-        #post_data = '{"code": "test"}
-        post_data = '{"code": "Some cool code", "description": "test snippet", "description_html": "test", "highlighted_code": "testhc", "python_version": 2.7, "rating_score": 0, "title": "Unit Test Snippet 1", "user": "/api/v1/users/1/"}'
+        post_data = '{"code": "Some cool code", "description": "test snippet", "python_version": 2.7, "language": "/api/v1/language/1/", "title": "Unit Test Snippet 1", "user": "/api/v1/user/1/"}'
         request._raw_post_data = post_data
         
         resp = self.client.post('/api/v1/snippet/', data=post_data, content_type='application/json')
@@ -41,4 +37,4 @@ class APITestCases(TestCase):
         self.assertEqual(resp.status_code, 200)
         obj = json.loads(resp.content)
         print resp.content
-        #self.assertEqual(obj['code'], 'Some cool code')
+        self.assertEqual(obj['code'], 'Some cool code')
