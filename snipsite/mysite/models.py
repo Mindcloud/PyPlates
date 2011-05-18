@@ -70,7 +70,7 @@ class Snippet(models.Model):
     def save(self, *args, **kwargs):
         self.description_html = markdown(self.description, safe_mode="escape")
         self.highlighted_code = self.highlight()
-        super(Snippet, self).save(*args, **kwargs)
+        return super(Snippet, self).save(*args, **kwargs)
 
     def entered_today(self):
         return self.pub_date.date() == datetime.date.today()

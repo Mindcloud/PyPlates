@@ -26,12 +26,12 @@ def snippet_detail(request, snippet_id):
         queryset=Snippet.objects.all(),
         object_id=snippet_id)
 
-@login_required
+#@login_required
 def edit_snippet(request, snippet_id=None, template_name='mysite/edit_snippet.html'):
     if snippet_id:
         snippet = get_object_or_404(Snippet, pk=snippet_id)
-        if request.user.id != snippet.user.id:
-            return HttpResponseForbidden()
+        #if request.user.id != snippet.user.id:
+        #    return HttpResponseForbidden()
     else:
         template_name = 'mysite/add_snippet.html'
         snippet = Snippet(user=request.user, language=Language.objects.get(name='Python'))

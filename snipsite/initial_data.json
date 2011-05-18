@@ -1,0 +1,41 @@
+[
+{
+    "fields": {
+        "username": "johndoe",
+        "email": "john@doe.com",
+        "password": "this_is_not_a_valid_password_string"
+    },
+    "model": "auth.user",
+    "pk": 1
+},
+{
+  "fields": {
+      "file_extension": "py", 
+      "language_code": "python", 
+      "name": "Python", 
+      "mime_type": "text/x-python", 
+      "slug": "python"
+    },
+    "model": "mysite.language",
+    "pk": 1
+}, 
+{
+    "pk": 1, 
+    "model": "mysite.snippet", 
+    "fields": {
+         "updated_date": "2011-05-15 09:54:15", 
+         "code": "This is a base test snippet", 
+         "description": "test snippet", 
+         "description_html": "<p>test snippet</p>", 
+         "title": "Bug starting and stopping from the widget", 
+         "language": 1, 
+         "user": 1, 
+         "rating_score": 0, 
+         "pub_date": "2011-05-15 09:54:15", 
+         "highlighted_code": "<div class=\"highlight\"><pre><span class=\"kn\">from</span> <span class=\"nn\">django</span> <span class=\"kn\">import</span> <span class=\"n\">forms</span>\n<span class=\"kn\">from</span> <span class=\"nn\">django.contrib</span> <span class=\"kn\">import</span> <span class=\"n\">admin</span>\n\n<span class=\"kn\">from</span> <span class=\"nn\">haystack.forms</span> <span class=\"kn\">import</span> <span class=\"n\">SearchForm</span>\n\n<span class=\"kn\">from</span> <span class=\"nn\">cab.models</span> <span class=\"kn\">import</span> <span class=\"n\">Language</span><span class=\"p\">,</span> <span class=\"n\">Snippet</span><span class=\"p\">,</span> <span class=\"n\">DJANGO_VERSIONS</span>\n\n\n<span class=\"k\">class</span> <span class=\"nc\">SnippetForm</span><span class=\"p\">(</span><span class=\"n\">forms</span><span class=\"o\">.</span><span class=\"n\">ModelForm</span><span class=\"p\">):</span>\n    <span class=\"k\">class</span> <span class=\"nc\">Meta</span><span class=\"p\">:</span>\n        <span class=\"n\">model</span> <span class=\"o\">=</span> <span class=\"n\">Snippet</span>\n        <span class=\"n\">exclude</span> <span class=\"o\">=</span> <span class=\"p\">(</span><span class=\"s\">&#39;author&#39;</span><span class=\"p\">,</span> <span class=\"s\">&#39;bookmark_count&#39;</span><span class=\"p\">,</span> <span class=\"s\">&#39;rating_score&#39;</span><span class=\"p\">,)</span>\n</pre></div>\n", 
+         "python_version": 2.7
+    },
+    "model": "mysite.snippet",
+    "pk": 1
+}
+] 
