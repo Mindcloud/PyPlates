@@ -22,25 +22,29 @@
   </script>
 <body class="{% block bodyclass %}snippets{% endblock %}">
   <div id="header">
-    <h1><a href="/">Mindcloud snippets</a></h1>
-    <div id="nav-main">
-      <span>
-        {% if user.is_authenticated %}
-          Logged in as <a href="/users/{{ user.username }}/">{{ user.username }}</a> (<a href="/add/">Add a snippet</a>) (<a href="/accounts/logout/">Log out</a>)
-        {% else %}
-          <a href="/accounts/login/?next={% ifequal request.path "/accounts/logout/" %}/{% else %}{{ request.path }}{% endifequal %}">Log in</a> or <a href="/accounts/register/">register</a>
-        {% endif %}
-      </span>
-    </div>
+  <div id="logo">
+    <h1><a href="/">Mindcloud Python snippets</a></h1>
+    <h2>with API</h2>
+  </div>
   </div>
 
-  <ul id="nav-secondary">
-  {% block secondary_nav %}
-    <li><a href="/users/">By user</a></li>
-    <li><a href="/tags/">By tag</a></li>
-  {% endblock %}
-  </ul>
-
+<div id="menu-wrap">
+<div id="menu">
+	<ul>
+		<li class="first"><a href="/" title="">Homepage</a></li>
+		<li><a href="/tags/" title="">By Tag</a></li>
+		<li><a href="/users/" title="">By User</a></li>
+                {% if user.is_authenticated %}
+                  <li><a href="/add/" title="">Add Snippet</a></li>
+                  <li><a href="/users/{{ user.username }}/">Your snippets</a></li>
+                  <li><a href="/accounts/logout/" title="">Logout</a></li>
+                {% else %}
+                  <li><a href="/accounts/login/?next=">Log in</a></li>
+                {% endif %}
+	</ul>
+</div>
+</div>
+<hr />
 
   <h2>{% block content_header %}{% endblock %}</h2>
   <div id="content">
@@ -60,30 +64,15 @@
           </table>
         </form>
       </div>
+      {% block sidebar %}
+      {% endblock %}
     </div>
   </div>
   {% block extra_content %}
   {% endblock %}
 
   <div id="footer">
-    <div class="chunk">
-      <h3>Snippets</h3>
-      <ul>
-        <li><a href="/users/">By author</a></li>
-        <li><a href="/tags/">By tag</a></li>
-        <li><a href="/popular/rated/">Highest-rated</a></li>
-      </ul>
-    </div>
-    {% if user.is_authenticated %}
-    <div class="chunk">
-      <h3>Your account</h3>
-      <ul>
-        <li><a href="/users/{{ user.username }}/">Your snippets</a></li>
-        <li><a href="/add/">Add a snippet</a></li>
-        <li><a href="/accounts/logout/">Log out</a></li>
-      </ul>
-    </div>
-    {% endif %}
+    <p class="legal">&copy;2011 All Rights Reserved. Designed by <a href="http://www.mindcloud.com/">Mindcloud.com</a>.</p>
   </div>
 </body>
 </html>
