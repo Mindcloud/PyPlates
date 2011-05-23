@@ -4,7 +4,22 @@
 <head>
   <title>Mindcloud snippets: {% block title %}Home{% endblock %}</title>
   <link rel="stylesheet" href="/media/css/style.css" type="text/css" />
-  </head>
+</head>
+<script type="text/javascript" language="javascript">
+    $(function() {
+      $("input#id_q").autocomplete({
+        minLength: 3,
+        source: function(request, response) {
+          var term = request.term;
+                $.getJSON("/search/autocomplete/", {'q': term}, function(data) {
+                  var results = [];
+                  $.each(data, function(k, v) {results.push(v.title);});
+                        response(results);
+                });
+        }
+      });
+    });
+  </script>
 <body class="{% block bodyclass %}snippets{% endblock %}">
   <div id="header">
     <h1><a href="/">Mindcloud snippets</a></h1>
@@ -21,10 +36,8 @@
 
   <ul id="nav-secondary">
   {% block secondary_nav %}
-    <li><a href="/users/">By author</a></li>
-    <li><a href="/languages/">By language</a></li>
+    <li><a href="/users/">By user</a></li>
     <li><a href="/tags/">By tag</a></li>
-    <li><a href="/popular/rated/">Highest-rated</a></li>
   {% endblock %}
   </ul>
 

@@ -3,5 +3,6 @@
 {% block bodyclass %}account{% endblock %}
 
 {% block secondary_nav %}
-<li><a href="/snippets/add/">Add a snippet</a></li>
+<li><a href="/users/{{ user.username }}/">Your snippets</a></li>
+<li><a href="/add/">Add a snippet</a></li>
 {% endblock %}

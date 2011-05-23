@@ -117,8 +117,7 @@ TEMPLATE_DIRS = (
 )
 
 HAYSTACK_SITECONF = 'mysite.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_WHOOSH_PATH = '/home/jeff/Dev/PyPlates/whoosh/mysite_index'
+HAYSTACK_SEARCH_ENGINE = 'dummy'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -131,7 +130,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'tastypie',
     'mysite',
-    'whoosh',
     'haystack',
     'taggit',
 )

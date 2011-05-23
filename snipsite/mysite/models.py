@@ -42,8 +42,12 @@ class SnippetManager(models.Manager):
     def top_tags(self):
         return self.model.tags.most_common().order_by('-num_times', 'name')
 
-    def tag_match(self, tag):
+    def matches_tag(self, tag):
         return self.filter(tags__in=[tag])
+
+    def top_users(self):
+        return User.objects.annotate(score=Count('snippet')).order_by('-score')
+
 
 class Snippet(models.Model):
     title = models.CharField(max_length=255)

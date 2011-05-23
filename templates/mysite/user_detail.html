@@ -1,0 +1,32 @@
+{% extends "base_user.html" %}
+{% load core_tags %}
+
+{% block title %}Snippets by {{ user.username }}{% endblock %}
+
+{% block content_header %}Snippets by {{ user.username }}{% endblock %}
+
+{% block content %}
+  {% if object_list %}
+    <ul>
+    {% for snippet in object_list %}
+      <li><a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a> (<a href="{{ snippet.language.get_absolute_url }}">{{ snippet.language.name }}</a>) {{ snippet.pub_date|timesince }} ago</li>
+    {% endfor %}
+    </ul>
+
+    <p class="pagination">{% if has_previous %}<a href="?page={{ previous }}">&lt; Previous {{ results_per_page }}</a>{% endif %}&nbsp;&nbsp;{% if has_next %}<a href="?page={{ next }}">Next {{ results_per_page }} &gt;</a>{% endif %}</p>
+  {% else %}
+    <p>{% ifequal request.user user %}You haven't{% else %}{{ user.username }} hasn't{% endifequal %} posted any snippets yet.</p>
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  <p>{% ifequal request.user author %}You've{% else %}{{ user.username }} has{% endifequal %} posted {{ hits }} snippet{{ object_list.count|pluralize }}.</p>
+
+  <p>The users who've submitted the most snippets are:</p>
+  <ol>
+  {% for author in "mysite.snippet"|call_manager:"top_users"|slice:":5" %}
+    <li><a href="/users/{{ user.username }}/">{{ user.username }}</a></li>
+  {% endfor %}
+  </ol>
+
+{% endblock %}

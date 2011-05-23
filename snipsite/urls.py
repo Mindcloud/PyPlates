@@ -19,11 +19,14 @@ urlpatterns = patterns('',
     url(r'^(?P<snippet_id>\d+)/edit/$', snippets.edit_snippet, name='snippet_edit'),
     url(r'^accounts/logout/', 'django.contrib.auth.views.logout'),
     url(r'^accounts/login/', 'django.contrib.auth.views.login'),
-    (r'^search/', include('haystack.urls')),
+    url(r'^search/$', snippets.search, name='mysite_search'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     (r'^api/', include(v1_api.urls)),
     url(r'^tags/', taglist.top_tags, name='top_tags'),
+    url(r'^(?P<slug>[-\w]+)/$', snippets.matches_tag, name='mysite_snippet_matches_tag'),
+    url(r'^users/$', user.top_users, name='mysite_top_users'),
+    url(r'^users/(?P<username>[-\w]+)/$', snippets.user_snippets, name='mysite_user_snippets'),
 )
 
 if settings.DEBUG:
