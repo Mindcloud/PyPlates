@@ -21,7 +21,7 @@
   {% load user %}
   {% get_top_users 5 as top_users %}
   <ol>
-  {% for author in top_authors %}
+  {% for user in top_users %}
     <li><a href="/users/{{ user.username }}/">{{ user.username }}</a></li>
   {% endfor %}
   </ol>

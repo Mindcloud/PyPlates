@@ -15,12 +15,17 @@ class APITestCases(TestCase):
         print "running get test"
         resp = self.client.get('/api/v1/snippet/1/', data={'format': 'json'})
         self.assertEqual(resp.status_code, 200)
-        #print resp.status_code
         deserialized = json.loads(resp.content)
-        print deserialized
-        #print len(deserialized)
-        #self.assertEqual(len(deserialized), 2)
-        #self.assertEqual(deserialized['notes'], {'list_endpoint': '/api/v1/notes/', 'schema': '/api/v1/notes/schema/'})
+        #print deserialized
+        print len(deserialized)
+        self.assertEqual(len(deserialized), 12)
+
+    def test_search(self):
+        print "Running search test"
+        resp = self.client.get('/api/v1/snippet/?title__startswith=API', data={'format': 'json'})
+        self.assertEqual(resp.status_code, 200)
+        deserialized - json.loads(resp.content)
+        self.assertEqual(deserialized['description'], 'Test snippet')        
 
     def test_post(self):
         print "Running post test"
