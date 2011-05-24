@@ -5,21 +5,6 @@
   <title>Mindcloud snippets: {% block title %}Home{% endblock %}</title>
   <link rel="stylesheet" href="/media/css/style.css" type="text/css" />
 </head>
-<script type="text/javascript" language="javascript">
-    $(function() {
-      $("input#id_q").autocomplete({
-        minLength: 3,
-        source: function(request, response) {
-          var term = request.term;
-                $.getJSON("/search/autocomplete/", {'q': term}, function(data) {
-                  var results = [];
-                  $.each(data, function(k, v) {results.push(v.title);});
-                        response(results);
-                });
-        }
-      });
-    });
-  </script>
 <body class="{% block bodyclass %}snippets{% endblock %}">
   <div id="header">
   <div id="logo">
