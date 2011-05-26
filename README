@@ -11,3 +11,13 @@ to install, use pip
 
 sudo pip install <library>
 
+TODO:
+1. add Tags to API
+2. Add Authentication to API
+   APIkey or user auth
+3. Fix Site User Profiles
+3. Add User registration
+4. Fix Site Search
+5. Fix Snippet edit
+
+

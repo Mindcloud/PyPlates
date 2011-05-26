@@ -116,8 +116,9 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-HAYSTACK_SITECONF = 'mysite.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'dummy'
+HAYSTACK_SITECONF = 'search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = '/home/jeff/Dev/PyPlates/whoosh/mysite_index'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -130,8 +131,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'tastypie',
     'mysite',
-    'haystack',
     'taggit',
+    'haystack',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -24,12 +24,8 @@ class APITestCases(TestCase):
         print "Running search test"
         resp = self.client.get('/api/v1/snippet/?title__startswith=API', data={'format': 'json'})
         self.assertEqual(resp.status_code, 200)
-        obj2 = json.loads(resp.content)
-        print resp.content
-        print obj2['code']
-        #print len(obj2)
-        #print obj2['code']
-        #self.assertEqual(obj2['description'], 'test snippet')        
+        obj = json.loads(resp.content)
+        self.assertEqual( obj['objects'][0]['description'], 'test snippet')
 
     def test_post(self):
         print "Running POST test"

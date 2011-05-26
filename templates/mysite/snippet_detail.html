@@ -12,7 +12,6 @@
 
 {% block sidebar %}
   <dl>
-    <dt>Description:</dt><br>
     {{ object.description_html|safe }}
     <dt>Author:</dt>
     <dd><a href="/users/{{ object.user.username }}/">{{ object.user.username }}</a></dd>
@@ -20,13 +19,15 @@
     <dd>{{ object.pub_date|date:"F j, Y" }}</dd>
     <dt>Python Version:</dt>
     <dd>{{ object.get_version }}</dd>
+    <dt>Tags:</dt>
+    <dd>{% for tag in object.tags.all %}<a href="{% url mysite_snippet_matches_tag tag.slug %}">{{ tag.name }}</a> {% endfor %}</dd>
   </dl>
   
   <h3>Other Options</h3>
   <ul>
     {% if user.is_authenticated %}
       {% ifequal user.id object.user.id %}
-        <li><a href="{{ object.id }}/edit/">Edit this snippet</a></li>
+        <li><a href="/{{ object.id }}/edit/">Edit Snippet</a></li>
       {% endifequal %}
     {% endif %}
   </ul>

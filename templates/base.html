@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>Mindcloud snippets: {% block title %}Home{% endblock %}</title>
-  <link rel="stylesheet" href="/media/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}css/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" />
 </head>
 <body class="{% block bodyclass %}snippets{% endblock %}">
   <div id="header">
