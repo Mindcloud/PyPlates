@@ -11,6 +11,8 @@ except ImportError:
 
 
 class APITestCases(TestCase):
+    fixtures = ['testdata.json']
+
     def test_gets(self):
         print "Running basic GET test"
         resp = self.client.get('/api/v1/snippet/1/', data={'format': 'json'})

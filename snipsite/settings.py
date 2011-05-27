@@ -116,7 +116,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-HAYSTACK_SITECONF = 'search_sites'
+HAYSTACK_SITECONF = 'mysite.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = '/home/jeff/Dev/PyPlates/whoosh/mysite_index'
 
