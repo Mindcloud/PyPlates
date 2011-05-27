@@ -5,6 +5,8 @@ django-tastypie
 pygments
 markdown
 django-haystack
+whoosh
+django-registration
 django-taggit
 
 to install, use pip
@@ -17,7 +19,7 @@ TODO:
    APIkey or user auth
 3. Fix Site User Profiles
 3. Add User registration
-4. Fix Site Search
-5. Fix Snippet edit
+4. Fix Site Search (DONE)
+5. Fix Snippet edit (DONE)
 
 
