@@ -4,7 +4,10 @@
 
 {% block title %}{{ object.title }}{% endblock %}
 
-{% block content_header %}{{ object.title }}{% endblock %}
+{% block content_header %}
+    <h2>Title: {{ object.title }}</h2>
+    <h3><b>Description</b>: {{ object.description_html|safe }}</h3>
+{% endblock %}
 
 {% block content %}
   {{ object.highlighted_code|safe }}
@@ -12,7 +15,6 @@
 
 {% block sidebar %}
   <dl>
-    {{ object.description_html|safe }}
     <dt>Author:</dt>
     <dd><a href="/users/{{ object.user.username }}/">{{ object.user.username }}</a></dd>
     <dt>Posted:</dt>

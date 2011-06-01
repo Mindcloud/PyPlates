@@ -4,7 +4,7 @@ admin.autodiscover()
 import settings
 from tastypie.api import Api
 from mysite.api.resources import *
-from mysite.views import snippets, taglist
+from mysite.views import snippets, taglist, lists
 
 v1_api = Api(api_name='v1')
 v1_api.register(SnippetResource())
@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^api/', include(v1_api.urls)),
     url(r'^tags/', taglist.top_tags, name='top_tags'),
     url(r'^(?P<slug>[-\w]+)/$', snippets.matches_tag, name='mysite_snippet_matches_tag'),
-    url(r'^users/$', 'mysite.views.lists.top_users', name='mysite_top_users'),
+    url(r'^users/$', lists.top_users, name='mysite_top_users'),
     url(r'^users/(?P<username>[-\w]+)/$', snippets.user_snippets, name='mysite_user_snippets'),
 )
 
