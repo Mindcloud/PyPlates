@@ -4,7 +4,7 @@ admin.autodiscover()
 import settings
 from tastypie.api import Api
 from mysite.api.resources import *
-from mysite.views import snippets, taglist, lists
+from mysite.views import snippets, taglist, lists, user
 
 v1_api = Api(api_name='v1')
 v1_api.register(SnippetResource())
@@ -16,8 +16,10 @@ urlpatterns = patterns('',
     url(r'^(?P<snippet_id>\d+)/$', snippets.snippet_detail, name = 'snippet_detail'),
     url(r'^add/$', snippets.edit_snippet, name='snippet_add'),
     url(r'^(?P<snippet_id>\d+)/edit/$', snippets.edit_snippet, name='snippet_edit'),
-    url(r'^accounts/logout/', 'django.contrib.auth.views.logout'),
-    url(r'^accounts/login/', 'django.contrib.auth.views.login'),
+    #url(r'^accounts/logout/', 'django.contrib.auth.views.logout'),
+    #url(r'^accounts/login/', 'django.contrib.auth.views.login'),
+    #url(r'^accounts/new/', user.create_user),
+    url(r'^accounts/', include('registration.urls')),
     url(r'^search/$', include('haystack.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

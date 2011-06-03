@@ -8,6 +8,8 @@ ADMINS = (
     ('Jeff', 'jeff@mindcloud.com'),
 )
 
+ACCOUNT_ACTIVATION_DAYS = 2
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -46,8 +48,8 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-#MEDIA_ROOT = '/home/jeff/Dev/PyPlates/media'
-MEDIA_ROOT = 'C:\Dev\media'
+MEDIA_ROOT = '/home/jeff/Dev/PyPlates/media'
+#MEDIA_ROOT = 'C:\Dev\media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -98,6 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -111,8 +114,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_DIRS = (
-    #"/home/jeff/Dev/PyPlates/templates"
-    "C:/Dev/templates"
+    "/home/jeff/Dev/PyPlates/templates"
+    #"C:/Dev/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -120,8 +123,8 @@ TEMPLATE_DIRS = (
 
 HAYSTACK_SITECONF = 'mysite.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
-#HAYSTACK_WHOOSH_PATH = '/home/jeff/Dev/PyPlates/whoosh/mysite_index'
-HAYSTACK_WHOOSH_PATH = 'C:\Dev\whoosh\mysite_index'
+HAYSTACK_WHOOSH_PATH = '/home/jeff/Dev/PyPlates/whoosh/mysite_index'
+#HAYSTACK_WHOOSH_PATH = 'C:\Dev\whoosh\mysite_index'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -136,6 +139,7 @@ INSTALLED_APPS = (
     'mysite',
     'taggit',
     'haystack',
+    'registration',
 )
 
 # A sample logging configuration. The only tangible logging

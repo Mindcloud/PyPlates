@@ -17,3 +17,4 @@ def top_users(request):
         template_name='mysite/top_users.html',
         paginate_by=20)
 
+
