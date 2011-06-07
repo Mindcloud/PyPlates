@@ -3,5 +3,5 @@ PYTHONPATH=$PWD:$PWD/..${PYTHONPATH:+:$PYTHONPATH}
 export PYTHONPATH
 
 echo "** Starting Test Server **"
-sudo python -m smtpd -n -cebuggingServer localhost:25
+sudo python -m smtpd -n -c DebuggingServer localhost:25
 
