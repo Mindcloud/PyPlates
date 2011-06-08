@@ -25,7 +25,7 @@ class LanguageResource(ModelResource):
 class SnippetResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
     language = fields.ForeignKey(LanguageResource, 'language')
-    tags = fields.ToManyField('self', 'tags')
+    #tags = fields.ToManyField('self', 'tags')
 	
     class Meta:
         queryset = Snippet.objects.all()
